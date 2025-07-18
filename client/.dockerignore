@@ -1,0 +1,23 @@
+# Ignore dependencies
+node_modules
+npm-debug.log
+
+# Ignore build output
+build
+dist
+
+# Ignore version control
+.git
+.gitignore
+
+# Ignore Docker files (optional)
+Dockerfile
+docker-compose.yml
+
+# Ignore env files
+
+
+# Ignore system files
+*.log
+.DS_Store
+
