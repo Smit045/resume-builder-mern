@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Project') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Smit045/resume-builder-mern.git'
+            }
+        }
+
+        stage('Generate .env') {
+            steps {
+                writeFile file: 'server/.env', text: '''
+PORT=4000
+MONGO_URI=mongodb://localhost:27017/resumedb
+JWT_SECRET=changeme
+                '''.stripIndent()
+            }
+        }
+
+        stage('Docker Compose Up') {
+            steps {
+                sh 'docker-compose up -d --build'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Done running Docker Compose.'
+        }
+    }
+}
